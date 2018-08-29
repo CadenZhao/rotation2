@@ -36,4 +36,6 @@ outdir = args.dir
 raw = pd.read_csv(infile, header=None, sep=', ', engine='python')
 data = raw.iloc[:,[5,6,7,9]]
 data = data[data.iloc[:,3].str.contains('Nuc|\s') == False]
+data.columns = [0,1,2,3]
+data = data.sort_values(by=3)
 data.to_csv('%s/%s.csv' % (outdir, infile.split('/')[-1]), index=None, header=None)
